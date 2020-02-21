@@ -179,7 +179,7 @@
 				{
 					var checked = (i === 0) ? " checked=\"checked\"" : "";
 					var btn = "<a href=\"javascript:;\"><label for=\"editormd-table-dialog-radio"+i+"\" title=\"" + _lang[i] + "\">";
-					btn += "<input type=\"radio\" name=\"table-align\" id=\"editormd-table-dialog-radio"+i+"\" value=\"" + values[i] + "\"" +checked + " />&nbsp;";
+					btn += "<input type=\"radio\" name=\"table-align\" ip=\"editormd-table-dialog-radio"+i+"\" value=\"" + values[i] + "\"" +checked + " />&nbsp;";
 					btn += "<i class=\"fa fa-" + icons[i] + "\"></i>";
 					btn += "</label></a>";
 

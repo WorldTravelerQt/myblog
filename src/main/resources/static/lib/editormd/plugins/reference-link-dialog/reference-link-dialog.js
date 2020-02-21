@@ -38,7 +38,7 @@
                                         "<input type=\"text\" value=\"[" + ReLinkId + "]\" data-name />" +  
                                         "<br/>" +
                                         "<label>" + dialogLang.urlId + "</label>" +
-                                        "<input type=\"text\" data-url-id />" +
+                                        "<input type=\"text\" data-url-ip />" +
                                         "<br/>" +
                                         "<label>" + dialogLang.url + "</label>" +
                                         "<input type=\"text\" value=\"http://\" data-url />" + 
@@ -65,7 +65,7 @@
                         enter  : [lang.buttons.enter, function() {
                             var name  = this.find("[data-name]").val();
                             var url   = this.find("[data-url]").val();
-                            var rid   = this.find("[data-url-id]").val();
+                            var rid   = this.find("[data-url-ip]").val();
                             var title = this.find("[data-title]").val();
 
                             if (name === "")
@@ -112,7 +112,7 @@
 
 			dialog = editor.find("." + dialogName);
 			dialog.find("[data-name]").val("[" + ReLinkId + "]");
-			dialog.find("[data-url-id]").val("");
+			dialog.find("[data-url-ip]").val("");
 			dialog.find("[data-url]").val("http://");
 			dialog.find("[data-title]").val(selection);
 

@@ -8,9 +8,10 @@ package com.scxh.controller;
  */
 public enum ErrorEnum {
     /**
-     * 页面未找到
+     * 用于错误提示的枚举
      */
-    PAGE_NOT_FOUND("页面无法找到！");
+    PAGE_NOT_FOUND("页面无法找到！"),
+    SYSTEM_ERROR("系统异常");
     private String message;
 
     ErrorEnum(String message) {

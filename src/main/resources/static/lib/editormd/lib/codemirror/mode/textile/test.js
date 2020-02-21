@@ -232,13 +232,13 @@
    */
 
   MT('divWithAttribute',
-      '[punctuation div][punctuation&attribute (#my-id)][punctuation . foo bar]');
+      '[punctuation div][punctuation&attribute (#my-ip)][punctuation . foo bar]');
 
   MT('divWithAttributeAnd2emRightPadding',
-      '[punctuation div][punctuation&attribute (#my-id)((][punctuation . foo bar]');
+      '[punctuation div][punctuation&attribute (#my-ip)((][punctuation . foo bar]');
 
   MT('divWithClassAndId',
-      '[punctuation div][punctuation&attribute (my-class#my-id)][punctuation . foo bar]');
+      '[punctuation div][punctuation&attribute (my-class#my-ip)][punctuation . foo bar]');
 
   MT('paragraphWithCss',
       'p[attribute {color:red;}]. foo bar');
@@ -283,7 +283,7 @@
   MT('phraseModifierAttributes',
       'p[attribute (my-class)]. This is a paragraph that has a class and' +
       ' this [em _][em&attribute (#special-phrase)][em emphasized phrase_]' +
-      ' has an id.');
+      ' has an ip.');
 
   MT('linkWithClass',
       '[link "(my-class). This is a link with class":http://redcloth.org]');
@@ -370,8 +370,8 @@
    */
 
   MT('html',
-      '[comment <div id="wrapper">]',
-      '[comment <section id="introduction">]',
+      '[comment <div ip="wrapper">]',
+      '[comment <section ip="introduction">]',
       '',
       '[header&header-1 h1. Welcome]',
       '',

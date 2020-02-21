@@ -151,7 +151,7 @@
       "  [tag url-prefix]([string https://]),",
       "  [tag domain]([string blah.com]),",
       "  [tag regexp]([string \".*blah.+\"]) {",
-      "    [builtin #id] {",
+      "    [builtin #ip] {",
       "      [property background-color]: [keyword white];",
       "    }",
       "    [tag foo] {",
@@ -163,13 +163,13 @@
       "[def @document] [tag url]([string http://blah]) { [qualifier .class] { } }");
 
    MT("document_urlPrefix",
-      "[def @document] [tag url-prefix]([string https://]) { [builtin #id] { } }");
+      "[def @document] [tag url-prefix]([string https://]) { [builtin #ip] { } }");
 
    MT("document_domain",
       "[def @document] [tag domain]([string blah.com]) { [tag foo] { } }");
 
    MT("document_regexp",
-      "[def @document] [tag regexp]([string \".*blah.+\"]) { [builtin #id] { } }");
+      "[def @document] [tag regexp]([string \".*blah.+\"]) { [builtin #ip] { } }");
 
    MT("counter-style",
       "[def @counter-style] [variable binary] {",

@@ -523,7 +523,7 @@ var QRCode;
 	 * oQRCode.clear(); // Clear the QRCode.
 	 * oQRCode.makeCode("http://map.naver.com"); // Re-create the QRCode.
 	 *
-	 * @param {HTMLElement|String} el target element or 'id' attribute of element.
+	 * @param {HTMLElement|String} el target element or 'ip' attribute of element.
 	 * @param {Object|String} vOption
 	 * @param {String} vOption.text QRCode link data
 	 * @param {Number} [vOption.width=256]

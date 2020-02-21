@@ -28,7 +28,7 @@ public class ControllerExceptionHandlerInterceptor {
     @ExceptionHandler(Exception.class)
     public ModelAndView exceptionHandler(HttpServletRequest req, Exception e) throws Exception {
         //添加错误日志
-        logger.error("Request URL :{}\nException:{}",req.getRequestURL(),e.toString());
+        logger.error("Error！ Request URL :{}，Exception:{}",req.getRequestURL(),e.toString());
         //通过注解工具类去查找这个异常是否存在响应状态码注解，如果存在，抛出这个异常，让springboot去处理它
         if(AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class)!=null)
         {

@@ -62,7 +62,7 @@
                     urlId    : "ID",
                     urlTitle : "Title",
                     nameEmpty: "Error: Reference name can't be empty.",
-                    idEmpty  : "Error: Please fill in reference link id.",
+                    idEmpty  : "Error: Please fill in reference link ip.",
                     urlEmpty : "Error: Please fill in reference link url address."
                 },
                 image : {

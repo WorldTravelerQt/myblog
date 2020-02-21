@@ -24,7 +24,7 @@
      "[tag \\begin][bracket {][atom module][bracket }[[]]]");
 
   MT("beginModuleId",
-     "[tag \\begin][bracket {][atom module][bracket }[[]id=bbt-size[bracket ]]]");
+     "[tag \\begin][bracket {][atom module][bracket }[[]ip=bbt-size[bracket ]]]");
 
   MT("importModule",
      "[tag \\importmodule][bracket [[][string b-b-t][bracket ]]{][builtin b-b-t][bracket }]");

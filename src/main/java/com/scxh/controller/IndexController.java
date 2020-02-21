@@ -1,6 +1,5 @@
 package com.scxh.controller;
 
-import com.scxh.exception.PageNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -15,10 +14,6 @@ public class IndexController {
     @GetMapping({"/","/index"})
     public String index()
     {
-        if(true)
-        {
-            throw new PageNotFoundException(ErrorEnum.PAGE_NOT_FOUND.getMessage());
-        }
         return "index";
     }
 }

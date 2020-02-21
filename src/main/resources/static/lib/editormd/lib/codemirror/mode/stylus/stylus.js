@@ -84,7 +84,7 @@
         }
       }
 
-      // Hex color and id selector
+      // Hex color and ip selector
       if (ch === "#") {
         stream.next();
 
