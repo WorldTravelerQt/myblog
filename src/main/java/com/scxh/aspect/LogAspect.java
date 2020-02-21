@@ -38,6 +38,7 @@ public class LogAspect {
     public void doBefore(JoinPoint point)
     {
         ServletRequestAttributes attributes= (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        //判断attributes是否为null，通常来说不可能为null
         if(attributes==null)
         {
             throw new RuntimeException(ErrorEnum.SYSTEM_ERROR.getMessage());
@@ -46,13 +47,12 @@ public class LogAspect {
         String ip=request.getRemoteAddr();
         String url=request.getRequestURL().toString();
         Object[] args= point.getArgs();
+        /*
+            getDeclaringTypeName()方法获取类名
+            getName()方法获取方法名
+         */
         String method=point.getSignature().getDeclaringTypeName()+"."+point.getSignature().getName()+"()";
         logger.info("{}",new RequestLog(ip,url,args,method));
-    }
-    @After("log()")
-    public void doAfter()
-    {
-        System.out.println("after");
     }
     @AfterReturning(returning = "value",value = "log()")
     public void doAfterReturning(Object value)
