@@ -13,6 +13,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 /**
@@ -33,6 +34,16 @@ public class LogAspect {
     private final Logger logger= LoggerFactory.getLogger(this.getClass());
     @Pointcut("execution(* *.*.controller.*.*(..))")
     public void log(){}
+
+    @Pointcut("execution(* *.*.controller.LoginController.doLogin(..))")
+    public void loginLog(){}
+
+    @Before("loginLog()")
+    public void doLoginBefore()
+    {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        logger.info("登录时间：{}",sdf.format(System.currentTimeMillis()));
+    }
 
     @Before("log()")
     public void doBefore(JoinPoint point)

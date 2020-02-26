@@ -1,13 +1,38 @@
 spring:
   datasource:
-    driver-class-name: com.alibaba.druid.proxy.DruidDriver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     password: root
     username: root
     url: jdbc:mysql://localhost:3306/night_sail_star?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  http:
+    encoding:
+      charset: UTF-8
+      force-request: true
+      force-response: true
+
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.log4j.Log4jImpl
+  type-aliases-package: com.scxh.po
+  configuration:
+    map-underscore-to-camel-case: true
 logging:
   level:
     root: warn
@@ -16,3 +41,5 @@ logging:
     name: log/blog-dev.log
 server:
   port: 8080
+  tomcat:
+    uri-encoding: UTF-8
