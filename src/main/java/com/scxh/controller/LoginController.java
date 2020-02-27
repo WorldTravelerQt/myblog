@@ -67,7 +67,10 @@ public class LoginController {
             //进行登录认证
             Subject subject= SecurityUtils.getSubject();
             try {
-                subject.login(new UsernamePasswordToken(username,password));
+                //设置记住我
+                UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+                token.setRememberMe(true);
+                subject.login(token);
                 User user = (User) subject.getPrincipal();
                 //保护用户密码所以把它设为空，不能把密码存到session里
                 user.setPassword("");
@@ -95,13 +98,19 @@ public class LoginController {
     @GetMapping("/admin/logout")
     public String logout(HttpSession session)
     {
-        session.removeAttribute("user");
+        if(session.getAttribute("user")!=null)
+        {
+            Subject subject=SecurityUtils.getSubject();
+            session.removeAttribute("user");
+            subject.logout();
+        }
         return "index";
     }
 
     @GetMapping("/admin/index")
-    public String adminIndexPage()
+    public String index()
     {
         return "/admin/index";
     }
+
 }

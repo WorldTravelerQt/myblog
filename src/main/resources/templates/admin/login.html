@@ -6,6 +6,7 @@
   <title>博客管理登录</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
   <link rel="stylesheet" href="../../static/css/me.css">
+
 </head>
 <body>
   <nav th:replace="admin/_fragments :: menu(0)">
@@ -45,7 +46,7 @@
              <ul class="list">
              </ul>
            </div>
-           <div class="ui mini negative message" style="display: none">我日死你的马呀</div>
+           <div class="ui mini negative message" style="display: none"></div>
 
          </div>
 
@@ -53,12 +54,12 @@
      </div>
    </div>
  </div>
+ <footer th:replace="_fragments::footer"></footer>
 
-<!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
-<script src="../../static/js/jquery-3.4.1.min.js"></script>
-<!--/*/</th:block>/*/-->
+<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script th:src="@{/js/sha1.js}"></script>
 
 <script type="text/javascript">
   function commit() {
@@ -67,6 +68,8 @@
     var flag=validate(username,password);
       if (flag)
       {
+        //双重加密
+        var sha1password = sha1(sha1(password));
         $.ajax({
           type: "post",
           dataType: "JSON",
@@ -75,18 +78,19 @@
           async: false,
           data: JSON.stringify({
             "username": username,
-            "password": password
-          }),
-          success:function(result){
-            if(result.message!=null)
-            {
-              var negative = $(".negative.message");
-              negative.text(result.message);
-              negative.css("display","block");
-            }else{
-              window.location.replace(result.url);
-            }
+            "password": sha1password
+          })
+        }).done(function(result){
+          if(result.message!=null)
+          {
+            var negative = $(".negative.message");
+            negative.text(result.message);
+            negative.css("display","block");
+          }else{
+            window.location.replace(result.url);
           }
+        }).fail(function(){
+          alert("服务器繁忙，稍后再试吧！");
         })
       }
   }
@@ -115,8 +119,6 @@
     }
     return flag;
   }
-
 </script>
-
 </body>
 </html>

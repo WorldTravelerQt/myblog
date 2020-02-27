@@ -28,4 +28,8 @@ public class Type {
      * 分类的所属博客
      **/
     private List<Blog> blogs;
+
+    public Type(Integer id) {
+        this.id=id;
+    }
 }

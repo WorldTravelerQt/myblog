@@ -15,7 +15,11 @@ public enum ErrorEnum {
     USERNAME_ERROR("不存在的用户名！"),
     PASSWORD_ERROR("密码错误，请重新输入！"),
     NULL_USERNAME_PASSWORD("用户名或密码不能为空！"),
-    REPEATED_LOGIN("不要进行重复登录！")
+    REPEATED_LOGIN("不要进行重复登录！"),
+    TYPE_NOT_FOUND("不存在该分类！"),
+    NULL_TYPENAME("分类名称不能为空！"),
+    TAG_NOT_FOUND("不存在该标签！"),
+    NULL_TAGNAME("标签名称不能为空！")
     ;
     private String message;
 

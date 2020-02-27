@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 绑定一个对应的Dao/Mapper接口 -->
+<mapper namespace="com.scxh.mapper.TypeMapper">
+    <insert id="saveType">
+        insert into t_type(id, name) VALUES (#{id},#{name});
+    </insert>
+    <update id="updateTypeById">
+        update t_type set name=#{name} where t_type.id=#{id}
+    </update>
+    <delete id="removeTypeById">
+        delete from t_type where id=#{id}
+    </delete>
+
+    <select id="getTypeByExample" resultType="com.scxh.po.Type">
+        select *
+        from t_type
+        <where>
+            <if test="id!=null">
+                and `id`=#{id}
+            </if>
+            <if test="name!=null">
+                and `name`=#{name}
+            </if>
+        </where>
+    </select>
+    <select id="typeCount" resultType="java.lang.Integer">
+        select count(*)
+        from t_type
+    </select>
+    <select id="getTypeList" resultType="com.scxh.po.Type">
+        select *
+        from t_type
+        limit #{limit} offSet #{offSet}
+    </select>
+
+</mapper>

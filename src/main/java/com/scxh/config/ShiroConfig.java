@@ -28,9 +28,14 @@ public class ShiroConfig {
 
         LinkedHashMap<String, String> hashMap = new LinkedHashMap<>();
         //设置拦截所有访问admin目录下资源的请求，必须拥有admin角色权限才可访问
-        hashMap.put("/admin/blogs","roles[admin]");
         hashMap.put("/admin/index","roles[admin]");
+        hashMap.put("/admin/blogs","roles[admin]");
         hashMap.put("/admin/blogs-input","roles[admin]");
+        hashMap.put("/admin/types","roles[admin]");
+        hashMap.put("/admin/types-input","roles[admin]");
+        hashMap.put("/admin/tags","roles[admin]");
+        hashMap.put("/admin/tags-input","roles[admin]");
+
 
         factoryBean.setFilterChainDefinitionMap(hashMap);
         return factoryBean;
