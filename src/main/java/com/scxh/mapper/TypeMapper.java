@@ -16,7 +16,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface TypeMapper {
-    boolean saveType( Type type);
+    boolean saveType(Type type);
     List<Type> getTypeByExample(Type type);
     boolean updateTypeById(@Param("name") String name,@Param("id") Integer id);
     boolean removeTypeById(@Param("id") Integer id);
@@ -27,5 +27,5 @@ public interface TypeMapper {
      * @return
      */
     List<Type> getTypeList(@Param("offSet") Integer offSet, @Param("limit") Integer pageSize);
-    Integer typeCount();
+    Integer countTypes();
 }

@@ -8,7 +8,7 @@ package com.scxh.controller;
  */
 public enum ErrorEnum {
     /**
-     * 用于错误提示的枚举
+     * 登录错误信息
      */
     PAGE_NOT_FOUND("页面无法找到！"),
     SYSTEM_ERROR("系统异常，稍后再试！"),
@@ -16,10 +16,18 @@ public enum ErrorEnum {
     PASSWORD_ERROR("密码错误，请重新输入！"),
     NULL_USERNAME_PASSWORD("用户名或密码不能为空！"),
     REPEATED_LOGIN("不要进行重复登录！"),
+    /**
+     * 分类错误信息
+     */
     TYPE_NOT_FOUND("不存在该分类！"),
     NULL_TYPENAME("分类名称不能为空！"),
+    REPEATED_TYPENAME("分类名称不能重复！"),
+    /**
+     * 标签错误信息
+     */
     TAG_NOT_FOUND("不存在该标签！"),
-    NULL_TAGNAME("标签名称不能为空！")
+    NULL_TAGNAME("标签名称不能为空！"),
+    REPEATED_TAGNAME("标签名称不能重复！")
     ;
     private String message;
 

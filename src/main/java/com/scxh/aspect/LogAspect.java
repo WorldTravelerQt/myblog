@@ -57,13 +57,14 @@ public class LogAspect {
         HttpServletRequest request = attributes.getRequest();
         String ip=request.getRemoteAddr();
         String url=request.getRequestURL().toString();
+        String methodType=request.getMethod();
         Object[] args= point.getArgs();
         /*
             getDeclaringTypeName()方法获取类名
             getName()方法获取方法名
          */
         String method=point.getSignature().getDeclaringTypeName()+"."+point.getSignature().getName()+"()";
-        logger.info("{}",new RequestLog(ip,url,args,method));
+        logger.info("{}",new RequestLog(ip,url,args,method,methodType));
     }
     @AfterReturning(returning = "value",value = "log()")
     public void doAfterReturning(Object value)
@@ -82,6 +83,7 @@ public class LogAspect {
         private String url;
         private Object[] args;
         private String method;
+        private String methodType;
 
         @Override
         public String toString() {
@@ -90,6 +92,7 @@ public class LogAspect {
                     ", 请求地址='" + url + '\'' +
                     ", 请求参数='" + Arrays.toString(args) + '\'' +
                     ", 请求方法='" + method + '\'' +
+                    ", 请求类型='" + methodType + '\'' +
                     '}';
         }
     }

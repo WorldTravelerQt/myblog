@@ -6,10 +6,8 @@ import com.scxh.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: 乔童
@@ -41,16 +39,46 @@ public class TypeController {
     {
         return "/admin/types-input";
     }
-    @PostMapping("/type/input")
+
+    @PostMapping("/types/input")
     public String saveType(Type type, Model model)
     {
-        if(type.getName().isEmpty())
+        String message = validateTypeParam(type);
+        if(!StringUtils.isEmpty(message))
         {
-            model.addAttribute("message",ErrorEnum.NULL_TYPENAME.getMessage());
+            model.addAttribute("message");
             return "/admin/types-input";
-        }else{
+        }
+        else{
             typeService.saveType(type);
         }
         return "redirect:/admin/types";
+    }
+    @ResponseBody
+    @DeleteMapping("/types/input")
+    public Object removeType(Integer id)
+    {
+        boolean flag = typeService.removeTypeById(id);
+        //如果删除失败了，返回错误信息，如果成功了，返回的是一个空字符
+        if(!flag)
+        {
+            return ErrorEnum.TYPE_NOT_FOUND.getMessage();
+        }
+        return null;
+    }
+
+    private String validateTypeParam(Type type)
+    {
+        //是否为空
+        if(type.getName().isEmpty())
+        {
+            return ErrorEnum.NULL_TYPENAME.getMessage();
+        }
+        //名称是否重复
+        if(typeService.getTypeByExample(new Type(type.getName())).size()>=1)
+        {
+            return ErrorEnum.REPEATED_TYPENAME.getMessage();
+        }
+        return "";
     }
 }

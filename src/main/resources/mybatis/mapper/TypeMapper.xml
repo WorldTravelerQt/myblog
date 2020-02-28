@@ -5,7 +5,7 @@
 <!-- 绑定一个对应的Dao/Mapper接口 -->
 <mapper namespace="com.scxh.mapper.TypeMapper">
     <insert id="saveType">
-        insert into t_type(id, name) VALUES (#{id},#{name});
+        insert into t_type(name) VALUES (#{name});
     </insert>
     <update id="updateTypeById">
         update t_type set name=#{name} where t_type.id=#{id}
@@ -26,7 +26,7 @@
             </if>
         </where>
     </select>
-    <select id="typeCount" resultType="java.lang.Integer">
+    <select id="countTypes" resultType="java.lang.Integer">
         select count(*)
         from t_type
     </select>

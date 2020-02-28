@@ -19,7 +19,7 @@ public class Type {
     /**
      * 主键
      **/
-    private int id;
+    private Integer id;
     /**
      * 分类名
      **/
@@ -31,5 +31,9 @@ public class Type {
 
     public Type(Integer id) {
         this.id=id;
+    }
+
+    public Type(String name) {
+        this.name=name;
     }
 }

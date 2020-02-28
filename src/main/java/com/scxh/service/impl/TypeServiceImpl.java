@@ -63,7 +63,7 @@ public class TypeServiceImpl implements TypeService {
     @Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
     public Pagination<Type> getTypeList(Integer pageCount) {
         Pagination<Type> typePagination = new Pagination<>();
-        typePagination.setPagination(pageCount,typeMapper.typeCount());
+        typePagination.setPagination(pageCount,typeMapper.countTypes());
         //设置offset：offset=当前页-1*每页显示数
         int offset=(typePagination.getCurrCount()-1)*typePagination.getPageSize();
         //进行分页查询

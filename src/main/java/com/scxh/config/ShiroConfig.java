@@ -2,8 +2,10 @@ package com.scxh.config;
 
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.mgt.WebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -41,9 +43,28 @@ public class ShiroConfig {
         return factoryBean;
     }
     @Bean("webSecurityManager")
-    public WebSecurityManager getWebSecurityManager(AuthorizingRealm realm)
+    public WebSecurityManager getWebSecurityManager(AuthorizingRealm realm,CookieRememberMeManager rememberMeManager)
     {
-        return new DefaultWebSecurityManager(realm);
+        DefaultWebSecurityManager webSecurityManager = new DefaultWebSecurityManager(realm);
+        webSecurityManager.setRememberMeManager(rememberMeManager);
+        return webSecurityManager;
+    }
+    @Bean
+    public CookieRememberMeManager getCookieRememberMeManager(SimpleCookie simpleCookie)
+    {
+        CookieRememberMeManager cookieManager = new CookieRememberMeManager();
+        cookieManager.setCookie(simpleCookie);
+        return cookieManager;
+    }
+    @Bean
+    public SimpleCookie getSimpleCookie()
+    {
+        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
+        //如果设置HttpOnly为true，则不会暴露客户端脚本，防止恶意攻击
+        simpleCookie.setHttpOnly(true);
+        //设置最大生存时间，单位是秒
+        simpleCookie.setMaxAge(60*60*24);
+        return simpleCookie;
     }
     @Bean("realm")
     public AuthorizingRealm getRealm()
